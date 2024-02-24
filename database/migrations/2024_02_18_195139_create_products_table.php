@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -18,6 +17,8 @@ return new class extends Migration
             $table->string('product_category');
             $table->string('product_image');
             $table->integer('status')->default(1);
+            $table->foreignId('category_id')->constrained('categories')->onUpdate('cascade')->onDelete('cascade');
+            
             $table->timestamps();
         });
     }
@@ -30,3 +31,6 @@ return new class extends Migration
         Schema::dropIfExists('products');
     }
 };
+
+
+
